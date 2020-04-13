@@ -13,7 +13,7 @@ class Weapon {
 
   takeDamage(damage) {
     this.durability -= damage;
-    if (damage > this.durability) {
+    if (this.durability < 0) {
       this.durability = 0;
     }
   }
@@ -159,11 +159,17 @@ class StudentLog {
     }
   }
 
-  getTotalAverage() {
+    getTotalAverage() {
     let totalAverage = 0;
-    for (let subject in this.subjectMarks) {      
-      totalAverage += this.getAverageBySubject([subject]) / this.subjectMarks[subject].length;      
+    let subjectsCount = 0;
+    for (let subject in this.subjectMarks) {           
+      totalAverage += this.getAverageBySubject([subject]);      
+      subjectsCount++;    
     }
-    return totalAverage;
+    if (subjectsCount) {      
+      return totalAverage / subjectsCount;
+    } else {
+      return 0;
+    }
   }
 }
