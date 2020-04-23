@@ -60,3 +60,28 @@ class AlarmClock {
     this.alarmCollection = [];
   }
 }
+
+function testCase() {
+    let alarm = new AlarmClock();
+    alarm.addClock('15:35', () => console.log('Скоро спать'), 1);
+    alarm.addClock('15:36', () => {
+        console.log('Пора готовиться ко сну!');
+        alarm.removeClock(2)
+    }, 2);
+    /*
+    alarm.addClock('21:01', () => console.log('Иди умывайся!')); // отсутствие id
+    */
+    alarm.addClock('15:37', () => {
+        console.log('Иди спать, завтра рано на работу!');
+        alarm.clearAlarms();
+        alarm.printAlarms();
+    }, 3);
+    /*
+    alarm.addClock('21:05', () => {
+        console.log('Иди спать, завтра рано на работу!')
+    }, 1); // существующий id
+    */
+    alarm.printAlarms();
+    alarm.start();  
+}
+testCase();
